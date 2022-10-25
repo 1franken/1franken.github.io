@@ -1,0 +1,21 @@
+
+#include <stdio.h>
+ #include <stdlib.h>
+
+// EJERCICIO 8 Actualizar el saldo de una cuenta bancaria, a partir de un retiro. Verificar que el saldo
+// sea mayor o igual que el importe a retirar
+ void main()
+ {
+    long saldo = 100000;
+    long retiro = 0;
+    printf("ingrese el monto que desea retirar: ");
+    scanf("%i", &retiro);
+    if (retiro <= saldo)
+    {
+        saldo -= retiro;
+        printf("su saldo es: %i", saldo);
+    }
+    else
+    printf("su retiro tiene que ser menor a su saldo");
+    
+}

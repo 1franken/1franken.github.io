@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+    //EJERCICIO 3 - Dado un número introducido por el usuario, indicar si este es positivo, negativo o nulo
+void main()
+{
+    int num = 0;
+    printf("ingrese un numero\n", num);
+    scanf("%i", &num);
+    
+    if (num > 0)
+    {
+        printf("el numero es positivo\n");
+    }
+    else if(num < 0)
+        {
+            printf("el numero es negativo\n");
+        }
+        else
+        printf("el numero es nulo");
+}
