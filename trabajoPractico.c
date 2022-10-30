@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 // Maria Paz Blanco, Ramiro Di Carlo, Garcia Franco.
 void main(int argc, char const *argv[])
 {
-    int menu, opcion, controlProductos = 0, i = 1, indiceStock = 0, buscadorCodigo = 0, listaProductos = 0;;
+    int menu, x = 0, opcion, controlProductos = 0, i = 1, indiceStock = 0, buscadorCodigo = 0, listaProductos = 0;
+    ;
     long codigoDeBarras[100] = {0}, cantidadStock[100] = {0};
-    char nombreProducto[100][50] = {}, descripcion[100][100], respuesta;
+    char nombreProducto[100][100] = {}, descripcion[100][100], respuesta;
 
-    do 
+    do
     {
         printf("Ingrese la opcion deseada: \n");
         printf("1. Cargar productos. \n");
@@ -24,29 +26,29 @@ void main(int argc, char const *argv[])
             do
             {
                 i = 1;
-                printf("cargue el producto deseado: ");
-                scanf("%s", &nombreProducto[controlProductos]);
                 fflush(stdin);
+                printf("Cargue el producto deseado: ");
+                scanf("%[^\n]", &nombreProducto[controlProductos]);
 
-                printf("ingrese una descripcion del producto: \n");
-                scanf("%s", &descripcion[controlProductos]);
                 fflush(stdin);
+                printf("Ingrese una descripcion del producto: \n");
+                scanf("%[^\n]", &descripcion[controlProductos]);
 
-                printf("ingrese su codigo de barras: \n");
+                printf("Ingrese su codigo de barras: \n");
                 scanf("%i", &codigoDeBarras[controlProductos]);
 
-                printf("ingrese su cantidad de stock: \n");
+                printf("Ingrese su cantidad de stock: \n");
                 scanf("%i", &cantidadStock[controlProductos]);
 
-                printf("quiere ingresar otro producto? presione 'y' para seguir, sino presione 'n' para volver al menu.");
-                scanf("%s", &respuesta);
+                printf("Quiere ingresar otro producto? presione 'y' para seguir, sino presione 'n' para volver al menu.");
+                scanf("%c", &respuesta);
 
                 while (respuesta != 'y' && respuesta != 'Y' && respuesta != 'n' && respuesta != 'N')
                 {
-                    printf("ingrese una opcion correcta. presione 'y' para seguir, sino presione 'n' para volver al menu. \n");
-                    scanf("%s", &respuesta);
+                    printf("Ingrese una opcion correcta. Presione 'y' para seguir, sino presione 'n' para volver al menu. \n");
+                    scanf("%c", &respuesta);
                 }
-                fflush(stdin);
+
                 if (respuesta == 'y' || respuesta == 'Y')
                 {
                     controlProductos++;
@@ -61,7 +63,7 @@ void main(int argc, char const *argv[])
 
         case 2:
             indiceStock = 0;
-            printf("ingrese el codigo de barras del producto para modificar su stock disponible: \n");
+            printf("Ingrese el codigo de barras del producto para modificar su stock disponible: \n");
             scanf("%d", &buscadorCodigo);
             do
             {
@@ -81,42 +83,41 @@ void main(int argc, char const *argv[])
             }
             else
             {
-                printf("stock: %d\n", cantidadStock[indiceStock]);
-                printf("ingrese la nueva cantidad de stock: \n");
-                scanf("%d", cantidadStock[indiceStock]);
+                printf("Stock: %d\n", cantidadStock[indiceStock]);
+                printf("Ingrese la nueva cantidad de stock: \n");
+                scanf("%d", &cantidadStock[indiceStock]);
             }
             break;
 
         case 3:
-            for (int sinStock = 0; sinStock < controlProductos; sinStock++)
+            
+            for (int x = 0; x < controlProductos; x++)
             {
-                if (cantidadStock[sinStock] == 0 && nombreProducto[sinStock] != '\0')
+                if (cantidadStock[x] == 0)
                 {
-                    printf("%s se encuentra sin stock.\n", &nombreProducto[sinStock]);
+                    printf("%s se encuentra sin stock.\n", &nombreProducto[x]);
                 }
             }
             system("pause");
             break;
 
         case 4:
-            do
+            for (x = 0; x <= controlProductos; x++)
             {
-                i = 0;
-                if (nombreProducto[listaProductos] != '\0')
-                {
-                    printf("%s\n", &nombreProducto[listaProductos]);
-                    listaProductos++;
-                }
-                else
-                {
-                    i = 0;
-                }
-            } 
-                while (listaProductos < controlProductos);
-            
-            // while (listaProductos < 100 && i == 1);
+                printf("%s\t", nombreProducto[x]);
 
+                printf("%s\t", descripcion[x]);
+
+                printf("%i\t", codigoDeBarras[x]);
+
+                printf("%i\t", cantidadStock[x]);
+
+                printf("\n");
+            }
             break;
+
+            case 5: 
+                printf("Gracias, vuelva pronto!\n");
         }
     } while (opcion != 5);
     system("pause");
