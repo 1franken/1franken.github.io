@@ -1,0 +1,17 @@
+
+*{
+    box-sizing: border-box;
+    font-family: 'Cormorant SC', serif;
+    background-color: rgb(240, 245, 244);
+}
+.perfil
+{
+    width: 25%;
+    float: left;
+}
+
+.sobreMi
+{
+    width: 75%;
+    float: left;
+}
